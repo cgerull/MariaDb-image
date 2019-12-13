@@ -1,0 +1,24 @@
+---
+version: "3.6"
+services:
+  mariadb:
+    image: mariadb:0.0.1
+    ports:
+      - "3306:3306"
+    volumes:
+      - type: volume
+        source: mdb_data
+        target: /var/lib/mysql
+    build: 
+      context: .
+      dockerfile: Dockerfile
+      args:
+        root_password: P@ssw0rd
+      labels:
+        - "local.mariadb.description=MariaDB server"
+    deploy:
+      replicas: 1
+volumes:
+  mdb_data:
+
+    
